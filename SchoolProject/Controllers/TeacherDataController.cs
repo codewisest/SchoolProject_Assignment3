@@ -21,7 +21,7 @@ namespace BlogAPI.Controllers
         /// </summary>
         /// <example>Get api/teacherdata/listteachers</example>
         /// <returns>First and last names of teachers</returns>
-        [HttpGet]
+        [HttpPost]
         public Teacher ListTeachers()
         {
             // create an instance of a connection
@@ -50,7 +50,7 @@ namespace BlogAPI.Controllers
             while (ResultSet.Read())
             {
                 // use DB column name as index to access to access column information
-                string TeacherName = ResultSet["teacherfname"] + " " + ResultSet["teacherlname"];
+                // string TeacherName = ResultSet["teacherfname"] + " " + ResultSet["teacherlname"];
                 teacherInfo.TeacherFirstName = (string)ResultSet["teacherfname"];
                 teacherInfo.TeacherLastName = (string)ResultSet["teacherlname"];
                 teacherInfo.TeacherFullName = teacherInfo.TeacherFirstName + " " + teacherInfo.TeacherLastName;
@@ -66,6 +66,35 @@ namespace BlogAPI.Controllers
             // return the final list of teachers names
             // return TeacherNames;
             return teacherInfo;
+        }
+
+        public Teacher ShowTeacher()
+        {
+            // create an instance of a connection
+            MySqlConnection Conn = School.AccessDatabase();
+
+            // open the connection between the web server and database
+            Conn.Open();
+
+            // establish a new query for our database
+            MySqlCommand command = Conn.CreateCommand();
+
+            // sql query
+            command.CommandText = "Select * from Teachers Where teacherid = 2";
+
+            // gather query result set into a variable
+            MySqlDataReader ResultSet = command.ExecuteReader();
+
+            ResultSet.Read();
+
+            // use DB column name as index to access to access column information
+            Teacher teacher = new Teacher();
+
+            teacher.TeacherFirstName = (string)ResultSet["teacherfname"];
+            teacher.TeacherLastName = (string)ResultSet["teacherlname"];
+            teacher.TeacherFullName = teacher.TeacherFirstName + " " + teacher.TeacherLastName;
+
+            return teacher;
         }
     }
 }

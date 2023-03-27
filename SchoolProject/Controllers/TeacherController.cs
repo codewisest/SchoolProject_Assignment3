@@ -24,5 +24,12 @@ namespace SchoolProject.Controllers
             // ViewBag.Teacher = teacherData.ListTeachers();
             return View(teacherData);
         }
+
+        public ActionResult show()
+        {
+            TeacherDataController teacherDataController = new TeacherDataController();
+            Teacher teacherData = teacherDataController.ShowTeacher();
+            return View(teacherData);
+        }
     }
 }
