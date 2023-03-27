@@ -10,5 +10,6 @@ namespace SchoolProject.Models
         // Teacher description
         public string TeacherFirstName;
         public string TeacherLastName;
+        public string TeacherFullName;
     }
 }

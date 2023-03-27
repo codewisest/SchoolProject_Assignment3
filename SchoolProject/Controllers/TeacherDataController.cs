@@ -42,19 +42,25 @@ namespace BlogAPI.Controllers
             // create an empty list of teachers names
             List<string> TeacherNames = new List<string> { };
 
+            Teacher teacherInfo = new Teacher();
+
             // loop through each row of the result set
             while (ResultSet.Read())
             {
                 // use DB column name as index to access to access column information
                 string TeacherName = ResultSet["teacherfname"] + " " + ResultSet["teacherlname"];
+                teacherInfo.TeacherFirstName = (string)ResultSet["teacherfname"];
+                teacherInfo.TeacherLastName = (string)ResultSet["teacherlname"];
+                teacherInfo.TeacherFullName = teacherInfo.TeacherFirstName + " " + teacherInfo.TeacherLastName;
 
                 // add teacher name to the list
-                TeacherNames.Add(TeacherName);
+                TeacherNames.Add(teacherInfo.TeacherFullName);
             }
             // close the connection between the web server and database
             Conn.Close();
 
             // return the final list of teachers names
+            // return TeacherNames;
             return TeacherNames;
         }
     }
