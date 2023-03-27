@@ -68,7 +68,7 @@ namespace BlogAPI.Controllers
             return teacherInfo;
         }
 
-        public Teacher ShowTeacher()
+        public Teacher ShowTeacher(int? teacherid)
         {
             // create an instance of a connection
             MySqlConnection Conn = School.AccessDatabase();
@@ -80,7 +80,7 @@ namespace BlogAPI.Controllers
             MySqlCommand command = Conn.CreateCommand();
 
             // sql query
-            command.CommandText = "Select * from Teachers Where teacherid = 2";
+            command.CommandText = $"Select * from Teachers Where teacherid = {teacherid}";
 
             // gather query result set into a variable
             MySqlDataReader ResultSet = command.ExecuteReader();

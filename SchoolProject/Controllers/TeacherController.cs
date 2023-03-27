@@ -25,10 +25,10 @@ namespace SchoolProject.Controllers
             return View(teacherData);
         }
 
-        public ActionResult show()
+        public ActionResult show(int? teacherid)
         {
             TeacherDataController teacherDataController = new TeacherDataController();
-            Teacher teacherData = teacherDataController.ShowTeacher();
+            Teacher teacherData = teacherDataController.ShowTeacher(teacherid);
             return View(teacherData);
         }
     }
