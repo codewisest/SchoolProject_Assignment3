@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using SchoolProject.Models;
 using MySql.Data.MySqlClient;
+using SchoolProject.Models;
 
 namespace BlogAPI.Controllers
 {
