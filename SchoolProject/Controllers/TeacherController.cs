@@ -1,8 +1,10 @@
-﻿using System;
+﻿using BlogAPI.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SchoolProject.Models;
 
 namespace SchoolProject.Controllers
 {
@@ -16,7 +18,11 @@ namespace SchoolProject.Controllers
 
         public ActionResult list()
         {
-            return View();
+            TeacherDataController teacherDataController = new TeacherDataController();
+            Teacher teacherData = teacherDataController.ListTeachers();
+            
+            // ViewBag.Teacher = teacherData.ListTeachers();
+            return View(teacherData);
         }
     }
 }

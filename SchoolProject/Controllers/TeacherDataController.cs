@@ -22,7 +22,7 @@ namespace BlogAPI.Controllers
         /// <example>Get api/teacherdata/listteachers</example>
         /// <returns>First and last names of teachers</returns>
         [HttpGet]
-        public IEnumerable<string> ListTeachers()
+        public Teacher ListTeachers()
         {
             // create an instance of a connection
             MySqlConnection Conn = School.AccessDatabase();
@@ -40,9 +40,11 @@ namespace BlogAPI.Controllers
             MySqlDataReader ResultSet = command.ExecuteReader();
 
             // create an empty list of teachers names
-            List<string> TeacherNames = new List<string> { };
+            //List<string> TeacherNames = new List<string> { };
 
             Teacher teacherInfo = new Teacher();
+            teacherInfo.TeacherNames = new List<string> { };
+            
 
             // loop through each row of the result set
             while (ResultSet.Read())
@@ -54,14 +56,16 @@ namespace BlogAPI.Controllers
                 teacherInfo.TeacherFullName = teacherInfo.TeacherFirstName + " " + teacherInfo.TeacherLastName;
 
                 // add teacher name to the list
-                TeacherNames.Add(teacherInfo.TeacherFullName);
+                // TeacherNames.Add(teacherInfo.TeacherFullName);
+                teacherInfo.TeacherNames.Add(teacherInfo.TeacherFullName);
+
             }
             // close the connection between the web server and database
             Conn.Close();
 
             // return the final list of teachers names
             // return TeacherNames;
-            return TeacherNames;
+            return teacherInfo;
         }
     }
 }

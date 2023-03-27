@@ -1,7 +1,12 @@
-﻿
+﻿@model SchoolProject.Models.Teacher
+
 @{
     ViewBag.Title = "list";
 }
 
 <h2>list</h2>
-
+@*@Model.TeacherNames*@
+ @foreach(var teacher in Model.TeacherNames)
+            {
+                @teacher <br />;
+            }
