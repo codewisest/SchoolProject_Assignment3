@@ -253,6 +253,7 @@
     <Content Include="Views\Teacher\list.cshtml" />
     <Content Include="Views\Teacher\show.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Teacher\error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

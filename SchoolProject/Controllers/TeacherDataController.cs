@@ -96,5 +96,7 @@ namespace BlogAPI.Controllers
 
             return teacher;
         }
+
+        
     }
 }
